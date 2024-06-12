@@ -28,4 +28,17 @@ const facilitySchema = new Schema<TFacility>({
   },
 });
 
+facilitySchema.pre('save', async function (next) {
+  const doesExist = await facilityModel.findOne({
+    name: this.name,
+    description: this.description,
+    pricePerHour: this.pricePerHour,
+    location: this.location,
+  });
+  if (doesExist) {
+    throw new Error('facility already exists');
+  }
+  next();
+});
+
 export const facilityModel = model<TFacility>('Facilities', facilitySchema);
