@@ -68,6 +68,7 @@ const updateFacilityValidationSchema = z.object({
     .optional(),
 });
 
+//exporting validation schemas through facilityValidations object
 export const facilityValidations = {
   createFacilityValidationSchema,
   updateFacilityValidationSchema,

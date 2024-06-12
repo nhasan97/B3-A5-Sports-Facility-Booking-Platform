@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { TFacility } from './facility.interface';
 
+//creating mongoose schema as the first layer of validation for facility data
 const facilitySchema = new Schema<TFacility>({
   name: {
     type: String,
@@ -28,6 +29,7 @@ const facilitySchema = new Schema<TFacility>({
   },
 });
 
+//using document middleware for checking if the document already exists or not
 facilitySchema.pre('save', async function (next) {
   const doesExist = await facilityModel.findOne({
     name: this.name,
@@ -41,4 +43,5 @@ facilitySchema.pre('save', async function (next) {
   next();
 });
 
+//creating and exporting model for facility
 export const facilityModel = model<TFacility>('Facilities', facilitySchema);

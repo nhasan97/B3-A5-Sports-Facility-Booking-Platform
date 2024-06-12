@@ -1,3 +1,5 @@
+//declaring type for facility
+
 export type TFacility = {
   name: string;
   description: string;
