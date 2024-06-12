@@ -33,6 +33,19 @@ const updateFacility = catchAsync(async (req, res, next) => {
 });
 /*
 
+--------------controller for updating specific facility info in DB----------------*/
+const deleteFacility = catchAsync(async (req, res, next) => {
+  const response = await facilityServices.deleteFacilityFromDB(req.params.id);
+  sendResponse(
+    res,
+    httpStatus.OK,
+    true,
+    'Facility deleted successfully',
+    response,
+  );
+});
+/*
+
 --------------controller for getting all facility data from DB----------------*/
 const getAllFacilities = catchAsync(async (req, res, next) => {
   const response = await facilityServices.getAllFacilitiesFromDB();
@@ -49,5 +62,6 @@ const getAllFacilities = catchAsync(async (req, res, next) => {
 export const facilityControllers = {
   createFacility,
   updateFacility,
+  deleteFacility,
   getAllFacilities,
 };

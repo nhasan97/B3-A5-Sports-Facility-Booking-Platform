@@ -43,5 +43,17 @@ facilitySchema.pre('save', async function (next) {
   next();
 });
 
+//using query middleware for fetching documents not having isDeleted property as true
+facilitySchema.pre('find', async function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
+});
+
+//using query middleware for fetching single document not having isDeleted property as true
+facilitySchema.pre('findOne', async function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
+});
+
 //creating and exporting model for facility
 export const facilityModel = model<TFacility>('Facilities', facilitySchema);

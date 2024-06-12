@@ -19,6 +19,9 @@ router.put(
   facilityControllers.updateFacility,
 );
 
+//------------route for deleting specific facility data from DB------------
+router.delete('/:id', facilityControllers.deleteFacility);
+
 //------------route for fetching all the facility data from DB------------
 router.get('/', facilityControllers.getAllFacilities);
 

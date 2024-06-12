@@ -21,8 +21,17 @@ const updateFacilityIntoDB = async (
   );
   return response;
 };
+/*
 
-//service function for fetching specific product data by id from DB
+----------------service function for deleting specific facility data from DB----------------*/
+const deleteFacilityFromDB = async (id: string) => {
+  const response = await facilityModel.findByIdAndUpdate(
+    id,
+    { isDeleted: true },
+    { new: true },
+  );
+  return response;
+};
 /*
 
 ----------------service function for fetching all facility data from DB----------------*/
@@ -35,5 +44,6 @@ const getAllFacilitiesFromDB = async () => {
 export const facilityServices = {
   createFacilityIntoDB,
   updateFacilityIntoDB,
+  deleteFacilityFromDB,
   getAllFacilitiesFromDB,
 };
