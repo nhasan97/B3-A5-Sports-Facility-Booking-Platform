@@ -26,7 +26,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
     //destructuring necessary properties
     const { email, role, iat } = decoded;
 
-    //checking if the user exists or not
+    //checking if the user exists or not and throwing error if the user doesn't exist
     const user = await userModel.doesUserExist(email);
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'User not found');
