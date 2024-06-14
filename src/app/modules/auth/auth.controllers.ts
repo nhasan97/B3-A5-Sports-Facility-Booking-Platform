@@ -15,8 +15,22 @@ const userSignup = catchAsync(async (req, res, next) => {
     response,
   );
 });
+/*
+
+--------------------------controller for user login--------------------------*/
+const userLogin = catchAsync(async (req, res, next) => {
+  const response = await authServices.loginUser(req.body);
+  sendResponse(
+    res,
+    httpStatus.OK,
+    true,
+    'User logged in successfully',
+    response,
+  );
+});
 
 //exporting all the controller functions through authControllers object
 export const authControllers = {
   userSignup,
+  userLogin,
 };

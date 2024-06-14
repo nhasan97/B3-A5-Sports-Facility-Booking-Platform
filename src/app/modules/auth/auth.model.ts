@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose';
-import { TUser } from './auth.interface';
+import { TUser, UserModel } from './auth.interface';
 import bcrypt from 'bcrypt';
 import config from '../../config';
 
 //creating mongoose schema as the first layer of validation for user signup
-const userSchema = new Schema<TUser>({
+const userSchema = new Schema<TUser, UserModel>({
   name: {
     type: String,
     required: true,
@@ -51,5 +51,18 @@ userSchema.post('save', function (doc, next) {
   next();
 });
 
+userSchema.statics.doesUserExist = async function (email: string) {
+  return await userModel.findOne({
+    email: email,
+  });
+};
+
+userSchema.statics.doesPasswordMatch = async function (
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
+
 //creating and exporting model for user
-export const userModel = model<TUser>('Users', userSchema);
+export const userModel = model<TUser, UserModel>('Users', userSchema);
