@@ -56,4 +56,4 @@ facilitySchema.pre('findOne', async function (next) {
 });
 
 //creating and exporting model for facility
-export const facilityModel = model<TFacility>('Facilities', facilitySchema);
+export const facilityModel = model<TFacility>('Facility', facilitySchema);

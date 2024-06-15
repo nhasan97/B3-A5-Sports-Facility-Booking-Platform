@@ -24,7 +24,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
     ) as JwtPayload;
 
     //destructuring necessary properties
-    const { email, role, iat } = decoded;
+    const { email, role } = decoded;
 
     //checking if the user exists or not and throwing error if the user doesn't exist
     const user = await userModel.doesUserExist(email);

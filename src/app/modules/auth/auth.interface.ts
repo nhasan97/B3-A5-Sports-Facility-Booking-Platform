@@ -11,6 +11,11 @@ export interface TUser {
   address: string;
 }
 
+//declaring type for user with id
+export interface TUserWithId extends TUser {
+  id: string;
+}
+
 //declaring type for user login
 export type TUserLogin = {
   email: string;
@@ -18,7 +23,7 @@ export type TUserLogin = {
 };
 
 export interface UserModel extends Model<TUser> {
-  doesUserExist(email: string): Promise<TUser>;
+  doesUserExist(email: string): Promise<TUserWithId>;
   doesPasswordMatch(
     plainTextPassword: string,
     hashedPassword: string,

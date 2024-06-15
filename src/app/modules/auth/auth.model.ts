@@ -68,4 +68,4 @@ userSchema.statics.doesPasswordMatch = async function (
 };
 
 //creating and exporting model for user
-export const userModel = model<TUser, UserModel>('Users', userSchema);
+export const userModel = model<TUser, UserModel>('User', userSchema);

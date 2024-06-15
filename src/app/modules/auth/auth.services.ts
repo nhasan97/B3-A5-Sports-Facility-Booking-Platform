@@ -36,6 +36,7 @@ const loginUser = async (userLoginData: TUserLogin) => {
 
   //creating payload
   const jwtPayload = {
+    id: user.id,
     email: user.email,
     role: user.role,
   };
@@ -55,14 +56,12 @@ const loginUser = async (userLoginData: TUserLogin) => {
   );
 
   //sending token to client
-  return { accessToken, refreshToken };
+  return { user, accessToken, refreshToken };
 };
 /*
 
 ----------------service function for refresh token----------------*/
 const refreshToken = async (token: string) => {
-  console.log('refe2', token);
-
   //verifying the token
   const decoded = jwt.verify(
     token,
@@ -80,6 +79,7 @@ const refreshToken = async (token: string) => {
 
   //creating payload
   const jwtPayload = {
+    id: user.id,
     email: user.email,
     role: user.role,
   };
