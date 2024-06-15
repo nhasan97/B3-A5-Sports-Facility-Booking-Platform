@@ -1,6 +1,6 @@
 const stringToTimeConverter = (timeString: string) => {
-  let [hours, minutes] = timeString.split(':').map(Number);
-  let date = new Date();
+  const [hours, minutes] = timeString.split(':').map(Number);
+  const date = new Date();
   date.setHours(hours, minutes, 0, 0);
   return date;
 };

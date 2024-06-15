@@ -6,7 +6,7 @@ import config from '../../config';
 /*
 
 ----------------controller for inserting new user data in DB----------------*/
-const userSignup = catchAsync(async (req, res, next) => {
+const userSignup = catchAsync(async (req, res) => {
   const response = await authServices.saveUserIntoDB(req.body);
   sendResponse(
     res,
@@ -19,7 +19,7 @@ const userSignup = catchAsync(async (req, res, next) => {
 /*
 
 --------------------------controller for user login--------------------------*/
-const userLogin = catchAsync(async (req, res, next) => {
+const userLogin = catchAsync(async (req, res) => {
   const response = await authServices.loginUser(req.body);
   const { user, accessToken, refreshToken } = response;
 
@@ -36,7 +36,7 @@ const userLogin = catchAsync(async (req, res, next) => {
 /*
 
 --------------------------controller for refresh token--------------------------*/
-const refreshToken = catchAsync(async (req, res, next) => {
+const refreshToken = catchAsync(async (req, res) => {
   const { refreshToken } = req.cookies;
   const response = await authServices.refreshToken(refreshToken);
 

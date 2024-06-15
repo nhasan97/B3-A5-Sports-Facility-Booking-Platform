@@ -7,7 +7,7 @@ import { facilityModel } from '../facility/facility.model';
 /*
 
 ----------------controller for inserting new booking data in DB----------------*/
-const createBooking = catchAsync(async (req, res, next) => {
+const createBooking = catchAsync(async (req, res) => {
   //destructuring necessary properties from body
   const { facility, startTime, endTime } = req.body;
 
@@ -37,7 +37,7 @@ const createBooking = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for getting all facility data from DB----------------*/
-const getAllBookings = catchAsync(async (req, res, next) => {
+const getAllBookings = catchAsync(async (req, res) => {
   const response = await bookingServices.getAllBookingsFromDB();
   sendResponse(
     res,
@@ -50,9 +50,8 @@ const getAllBookings = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for getting user specific booking data from DB----------------*/
-const getUserBookings = catchAsync(async (req, res, next) => {
+const getUserBookings = catchAsync(async (req, res) => {
   const userId = req.user.id;
-  console.log(userId);
   const response = await bookingServices.getUsersBookingsFromDB(userId);
   sendResponse(
     res,
@@ -65,7 +64,7 @@ const getUserBookings = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for getting canceling booking data----------------*/
-const cancelBooking = catchAsync(async (req, res, next) => {
+const cancelBooking = catchAsync(async (req, res) => {
   const response = await bookingServices.deleteBookingFromDB(req.params.id);
   sendResponse(
     res,

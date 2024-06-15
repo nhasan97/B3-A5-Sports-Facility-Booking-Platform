@@ -5,7 +5,7 @@ import catchAsync from '../../utilities/catchAsync';
 /*
 
 ----------------controller for inserting new facility data in DB----------------*/
-const createFacility = catchAsync(async (req, res, next) => {
+const createFacility = catchAsync(async (req, res) => {
   const response = await facilityServices.createFacilityIntoDB(req.body);
   sendResponse(
     res,
@@ -18,7 +18,7 @@ const createFacility = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for updating specific facility info in DB----------------*/
-const updateFacility = catchAsync(async (req, res, next) => {
+const updateFacility = catchAsync(async (req, res) => {
   const response = await facilityServices.updateFacilityIntoDB(
     req.params.id,
     req.body,
@@ -34,7 +34,7 @@ const updateFacility = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for updating specific facility info in DB----------------*/
-const deleteFacility = catchAsync(async (req, res, next) => {
+const deleteFacility = catchAsync(async (req, res) => {
   const response = await facilityServices.deleteFacilityFromDB(req.params.id);
   sendResponse(
     res,
@@ -47,7 +47,7 @@ const deleteFacility = catchAsync(async (req, res, next) => {
 /*
 
 --------------controller for getting all facility data from DB----------------*/
-const getAllFacilities = catchAsync(async (req, res, next) => {
+const getAllFacilities = catchAsync(async (req, res) => {
   const response = await facilityServices.getAllFacilitiesFromDB();
   sendResponse(
     res,

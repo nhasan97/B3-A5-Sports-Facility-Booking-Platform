@@ -69,7 +69,7 @@ const refreshToken = async (token: string) => {
   ) as JwtPayload;
 
   //destructuring necessary properties
-  const { email, iat } = decoded;
+  const { email } = decoded;
 
   //checking if the user exists or not and throwing error if the user doesn't exist
   const user = await userModel.doesUserExist(email);
