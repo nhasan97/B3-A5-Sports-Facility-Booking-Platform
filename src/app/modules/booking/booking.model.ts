@@ -6,8 +6,8 @@ const bookingSChema = new Schema<TBooking>({
   date: { type: String, required: true, trim: true },
   startTime: { type: String, required: true, trim: true },
   endTime: { type: String, required: true, trim: true },
-  user: { type: String, required: true, trim: true },
-  facility: { type: String, required: true, trim: true },
+  user: { type: String, ref: 'User', required: true, trim: true },
+  facility: { type: String, ref: 'Facility', required: true, trim: true },
   payableAmount: { type: Number, required: true },
   isBooked: {
     type: String,

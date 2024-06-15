@@ -15,4 +15,13 @@ router.post(
   bookingControllers.createBooking,
 );
 
+//------------route for fetching all the booking data from DB------------
+router.get('/', auth(userRole.admin), bookingControllers.getAllBookings);
+
+//------------route for fetching user specific booking data from DB------------
+router.get('/user', auth(userRole.user), bookingControllers.getUserBookings);
+
+//------------route for deleting specific facility data from DB------------
+router.delete('/:id', auth(userRole.user), bookingControllers.cancelBooking);
+
 export const bookingRoutes = router;

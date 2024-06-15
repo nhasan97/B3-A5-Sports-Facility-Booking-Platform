@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { TFacility } from './facility.interface';
+import AppError from '../../errors/AppError';
+import httpStatus from 'http-status';
 
 //creating mongoose schema as the first layer of validation for facility data
 const facilitySchema = new Schema<TFacility>({
@@ -38,7 +40,10 @@ facilitySchema.pre('save', async function (next) {
     location: this.location,
   });
   if (doesExist) {
-    throw new Error('facility already exists');
+    throw new AppError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      'facility already exists',
+    );
   }
   next();
 });
