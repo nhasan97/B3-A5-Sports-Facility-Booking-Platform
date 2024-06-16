@@ -42,7 +42,7 @@ facilitySchema.pre('save', async function (next) {
   if (doesExist) {
     throw new AppError(
       httpStatus.INTERNAL_SERVER_ERROR,
-      'facility already exists',
+      'Facility already exists',
     );
   }
   next();

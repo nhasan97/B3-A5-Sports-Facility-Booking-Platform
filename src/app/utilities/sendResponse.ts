@@ -1,5 +1,6 @@
 import { Response } from 'express';
 import { TFacility } from '../modules/facility/facility.interface';
+import { TBooking } from '../modules/booking/booking.interface';
 
 // ----------------function for formatting and sending response to client----------------
 export const sendResponse = (
@@ -7,9 +8,9 @@ export const sendResponse = (
   statusCode: number,
   operationalStatus: boolean,
   message: string = 'Something went wrong!',
-  toSend: TFacility | unknown = null,
+  toSend: TFacility | TBooking | unknown = null,
 ) => {
-  if (operationalStatus === true) {
+  if (toSend) {
     res.status(statusCode).json({
       success: operationalStatus,
       statusCode: statusCode,
