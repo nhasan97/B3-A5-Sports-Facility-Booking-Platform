@@ -49,13 +49,17 @@ const deleteFacility = catchAsync(async (req, res) => {
 --------------controller for getting all facility data from DB----------------*/
 const getAllFacilities = catchAsync(async (req, res) => {
   const response = await facilityServices.getAllFacilitiesFromDB();
-  sendResponse(
-    res,
-    httpStatus.OK,
-    true,
-    'Facilities retrieved successfully',
-    response,
-  );
+  if (response.length) {
+    sendResponse(
+      res,
+      httpStatus.OK,
+      true,
+      'Facilities retrieved successfully',
+      response,
+    );
+  } else {
+    sendResponse(res, httpStatus.NOT_FOUND, false, 'No Data Found', response);
+  }
 });
 
 //exporting all the controller functions through facilityControllers object

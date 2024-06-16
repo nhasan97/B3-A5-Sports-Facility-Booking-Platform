@@ -15,7 +15,10 @@ const auth = (...requiredRoles: TUserRole[]) => {
     //checking if the token exists or not
     if (!token) {
       //throwing error if there is no token
-      throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
     }
 
     //verifying the token
@@ -35,7 +38,10 @@ const auth = (...requiredRoles: TUserRole[]) => {
 
     //checking if the role of token matches with the allowed role(s) for the route or not
     if (requiredRoles && !requiredRoles.includes(role)) {
-      throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
     }
 
     //setting decoded in user field of request

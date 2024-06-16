@@ -39,13 +39,17 @@ const createBooking = catchAsync(async (req, res) => {
 --------------controller for getting all facility data from DB----------------*/
 const getAllBookings = catchAsync(async (req, res) => {
   const response = await bookingServices.getAllBookingsFromDB();
-  sendResponse(
-    res,
-    httpStatus.OK,
-    true,
-    'Bookings retrieved successfully',
-    response,
-  );
+  if (response.length) {
+    sendResponse(
+      res,
+      httpStatus.OK,
+      true,
+      'Bookings retrieved successfully',
+      response,
+    );
+  } else {
+    sendResponse(res, httpStatus.NOT_FOUND, false, 'No Data Found', response);
+  }
 });
 /*
 
@@ -53,13 +57,18 @@ const getAllBookings = catchAsync(async (req, res) => {
 const getUserBookings = catchAsync(async (req, res) => {
   const userId = req.user.id;
   const response = await bookingServices.getUsersBookingsFromDB(userId);
-  sendResponse(
-    res,
-    httpStatus.OK,
-    true,
-    'Bookings retrieved successfully',
-    response,
-  );
+
+  if (response.length) {
+    sendResponse(
+      res,
+      httpStatus.OK,
+      true,
+      'Bookings retrieved successfully',
+      response,
+    );
+  } else {
+    sendResponse(res, httpStatus.NOT_FOUND, false, 'No Data Found', response);
+  }
 });
 /*
 
