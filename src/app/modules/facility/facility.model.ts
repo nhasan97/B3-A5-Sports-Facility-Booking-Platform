@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose';
-import { TFacility } from './facility.interface';
+import { FacilityModel, TFacility } from './facility.interface';
 import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
 
 //creating mongoose schema as the first layer of validation for facility data
-const facilitySchema = new Schema<TFacility>({
+const facilitySchema = new Schema<TFacility, FacilityModel>({
   name: {
     type: String,
     required: true,
@@ -60,5 +60,13 @@ facilitySchema.pre('findOne', async function (next) {
   next();
 });
 
+//checking if the facility exists or not using static method
+facilitySchema.statics.doesFacilityExist = async function (id: string) {
+  return await facilityModel.findById(id);
+};
+
 //creating and exporting model for facility
-export const facilityModel = model<TFacility>('Facility', facilitySchema);
+export const facilityModel = model<TFacility, FacilityModel>(
+  'Facility',
+  facilitySchema,
+);

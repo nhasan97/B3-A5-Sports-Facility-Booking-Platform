@@ -1,6 +1,8 @@
 //declaring type for booking
 
-export type TBooking = {
+import { Model } from 'mongoose';
+
+export interface TBooking {
   date: string;
   startTime: string;
   endTime: string;
@@ -8,4 +10,8 @@ export type TBooking = {
   facility: string;
   payableAmount: number;
   isBooked: 'confirmed' | 'unconfirmed' | 'canceled';
-};
+}
+
+export interface BookingModel extends Model<TBooking> {
+  doesBookingExist(id: string): Promise<TBooking>;
+}

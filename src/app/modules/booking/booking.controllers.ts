@@ -4,6 +4,8 @@ import { sendResponse } from '../../utilities/sendResponse';
 import { bookingServices } from './booking.services';
 import { calculatePayableAmount } from './booking.utils';
 import { facilityModel } from '../facility/facility.model';
+import { bookingModel } from './booking.model';
+import AppError from '../../errors/AppError';
 /*
 
 ----------------controller for inserting new booking data in DB----------------*/
@@ -11,9 +13,14 @@ const createBooking = catchAsync(async (req, res) => {
   //destructuring necessary properties from body
   const { facility, startTime, endTime } = req.body;
 
-  //getting the selected facility and setting pricePerHour
-  const loadedFacility = await facilityModel.findOne({ _id: facility });
-  const pricePerHour = loadedFacility?.pricePerHour || 0; //need static
+  //checking if the selected facility exists or not. If not throwing an error.
+  const loadedFacility = await facilityModel.doesFacilityExist(facility);
+  if (!loadedFacility) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
+  }
+
+  //setting pricePerHour
+  const pricePerHour = loadedFacility?.pricePerHour || 0;
 
   //creating booking data
   const booking = {
@@ -74,7 +81,24 @@ const getUserBookings = catchAsync(async (req, res) => {
 
 --------------controller for getting canceling booking data----------------*/
 const cancelBooking = catchAsync(async (req, res) => {
+  //checking if the booking exists or not. If not throwing an error.
+  const booking = await bookingModel.doesBookingExist(req.params.id);
+  if (!booking) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
+  }
+
+  //checking if the booking is already canceled or not. If it's been canceled previously throwing an error.
+  if (booking && booking.isBooked === 'canceled') {
+    throw new AppError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      'This booking has already been canceled',
+    );
+  }
+
+  //changing booking status to canceled in DB
   const response = await bookingServices.deleteBookingFromDB(req.params.id);
+
+  //sending response
   sendResponse(
     res,
     httpStatus.OK,
