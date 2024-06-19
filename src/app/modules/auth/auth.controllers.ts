@@ -49,9 +49,13 @@ const userLogin = catchAsync(async (req, res) => {
 
 --------------------------controller for refresh token--------------------------*/
 const refreshToken = catchAsync(async (req, res) => {
+  //destructuring refresh token from cookies
   const { refreshToken } = req.cookies;
+
+  //sending refresh token to service function
   const response = await authServices.refreshToken(refreshToken);
 
+  //sending response
   sendResponse(
     res,
     httpStatus.OK,

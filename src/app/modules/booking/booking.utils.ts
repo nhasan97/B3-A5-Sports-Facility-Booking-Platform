@@ -1,6 +1,7 @@
 import { calculateTimeDiffInMinutes } from '../../utilities/timeFunctions';
 import { TSlot } from './booking.interface';
 
+//function for calculating payable amount for facility booking
 export const calculatePayableAmount = (
   startTime: string,
   endTime: string,
@@ -16,6 +17,7 @@ export const calculatePayableAmount = (
   return payableAmount;
 };
 
+//function for checking slot conflicts while facility booking
 export const timeSlotConflicts = (
   previousBookings: TSlot[],
   newBookingSchedule: TSlot,

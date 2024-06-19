@@ -22,6 +22,7 @@ export type TUserLogin = {
   password: string;
 };
 
+//declaring type definition for doesUserExist and doesPasswordMatch static functions
 export interface UserModel extends Model<TUser> {
   doesUserExist(email: string): Promise<TUserWithId>;
   doesPasswordMatch(

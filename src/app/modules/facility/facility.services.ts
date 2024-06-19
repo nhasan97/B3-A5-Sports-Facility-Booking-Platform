@@ -26,11 +26,14 @@ const updateFacilityIntoDB = async (
     throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
   }
 
+  //updating facility data in DB
   const response = await facilityModel.findByIdAndUpdate(
     id,
     updatedFacilityData,
     { new: true },
   );
+
+  //returning response
   return response;
 };
 /*

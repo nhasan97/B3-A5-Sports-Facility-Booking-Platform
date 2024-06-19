@@ -9,6 +9,7 @@ export interface TFacility {
   isDeleted?: boolean;
 }
 
+//declaring type definition for doesFacilityExist static function
 export interface FacilityModel extends Model<TFacility> {
   doesFacilityExist(id: string): Promise<TFacility>;
 }
