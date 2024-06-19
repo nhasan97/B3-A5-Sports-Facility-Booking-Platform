@@ -20,6 +20,12 @@ const updateFacilityIntoDB = async (
   id: string,
   updatedFacilityData: Partial<TFacility>,
 ) => {
+  //checking if the selected facility exists or not. If not throwing an error.
+  const loadedFacility = await facilityModel.doesFacilityExist(id);
+  if (!loadedFacility) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
+  }
+
   const response = await facilityModel.findByIdAndUpdate(
     id,
     updatedFacilityData,

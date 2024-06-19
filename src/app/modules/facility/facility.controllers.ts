@@ -2,14 +2,14 @@ import httpStatus from 'http-status';
 import { sendResponse } from '../../utilities/sendResponse';
 import { facilityServices } from './facility.services';
 import catchAsync from '../../utilities/catchAsync';
-import { facilityModel } from './facility.model';
-import AppError from '../../errors/AppError';
-
 /*
 
 ----------------controller for inserting new facility data in DB----------------*/
 const createFacility = catchAsync(async (req, res) => {
+  //Passing data to service function
   const response = await facilityServices.createFacilityIntoDB(req.body);
+
+  //sending response
   sendResponse(
     res,
     httpStatus.OK,
@@ -22,12 +22,6 @@ const createFacility = catchAsync(async (req, res) => {
 
 --------------controller for updating specific facility info in DB----------------*/
 const updateFacility = catchAsync(async (req, res) => {
-  //checking if the selected facility exists or not. If not throwing an error.
-  const loadedFacility = await facilityModel.doesFacilityExist(req.params.id);
-  if (!loadedFacility) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
-  }
-
   //Passing data to service function
   const response = await facilityServices.updateFacilityIntoDB(
     req.params.id,
@@ -47,6 +41,7 @@ const updateFacility = catchAsync(async (req, res) => {
 
 --------------controller for updating specific facility info in DB----------------*/
 const deleteFacility = catchAsync(async (req, res) => {
+  //Passing id to service function
   const response = await facilityServices.deleteFacilityFromDB(req.params.id);
 
   //sending response
@@ -62,7 +57,10 @@ const deleteFacility = catchAsync(async (req, res) => {
 
 --------------controller for getting all facility data from DB----------------*/
 const getAllFacilities = catchAsync(async (req, res) => {
+  //receiving data from service function
   const response = await facilityServices.getAllFacilitiesFromDB();
+
+  //sending response
   if (response.length) {
     sendResponse(
       res,
