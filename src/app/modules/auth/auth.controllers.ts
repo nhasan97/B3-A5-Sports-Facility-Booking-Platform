@@ -7,7 +7,10 @@ import config from '../../config';
 
 ----------------controller for inserting new user data in DB----------------*/
 const userSignup = catchAsync(async (req, res) => {
+  //sending data to service function
   const response = await authServices.saveUserIntoDB(req.body);
+
+  //sending response
   sendResponse(
     res,
     httpStatus.OK,
@@ -20,18 +23,27 @@ const userSignup = catchAsync(async (req, res) => {
 
 --------------------------controller for user login--------------------------*/
 const userLogin = catchAsync(async (req, res) => {
-  const response = await authServices.loginUser(req.body);
-  const { user, accessToken, refreshToken } = response;
+  //destructuring necessary properties from result sent by service function
+  const { user, accessToken, refreshToken } = await authServices.loginUser(
+    req.body,
+  );
+  const { id, name, email, role, phone, address } = user;
 
+  //setting refresh token in cookie
   res.cookie('refreshToken', refreshToken, {
     secure: config.node_env === 'production',
     httpOnly: true,
   });
 
-  sendResponse(res, httpStatus.OK, true, 'User logged in successfully', {
-    user,
+  //sending response
+  sendResponse(
+    res,
+    httpStatus.OK,
+    true,
+    'User logged in successfully',
+    { _id: id, name, email, role, phone, address },
     accessToken,
-  });
+  );
 });
 /*
 

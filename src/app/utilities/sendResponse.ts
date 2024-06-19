@@ -6,20 +6,14 @@ export const sendResponse = <T>(
   statusCode: number,
   operationalStatus: boolean,
   message: string = 'Something went wrong!',
-  toSend: T,
+  toSend?: T,
+  token?: string,
 ) => {
-  if (toSend) {
-    res.status(statusCode).json({
-      success: operationalStatus,
-      statusCode: statusCode,
-      message: message,
-      data: toSend,
-    });
-  } else {
-    res.status(statusCode).json({
-      success: operationalStatus,
-      statusCode: statusCode,
-      message: message,
-    });
-  }
+  res.status(statusCode).json({
+    success: operationalStatus,
+    statusCode: statusCode,
+    message: message,
+    token: token,
+    data: toSend,
+  });
 };

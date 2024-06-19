@@ -9,8 +9,9 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 ----------------service function for saving user data in DB----------------*/
 const saveUserIntoDB = async (userData: TUser) => {
-  const response = await userModel.create(userData);
-  return response;
+  const { _id, name, email, role, phone, address } =
+    await userModel.create(userData);
+  return { _id, name, email, role, phone, address };
 };
 /*
 
@@ -55,7 +56,7 @@ const loginUser = async (userLoginData: TUserLogin) => {
     config.jwt_refresh_expires_in as string,
   );
 
-  //sending token to client
+  //sending user and tokens to controller
   return { user, accessToken, refreshToken };
 };
 /*
