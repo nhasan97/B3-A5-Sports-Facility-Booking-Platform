@@ -12,6 +12,11 @@ export interface TBooking {
   isBooked: 'confirmed' | 'unconfirmed' | 'canceled';
 }
 
+export type TSlot = {
+  startTime: string;
+  endTime: string;
+};
+
 export interface BookingModel extends Model<TBooking> {
   doesBookingExist(id: string): Promise<TBooking>;
 }

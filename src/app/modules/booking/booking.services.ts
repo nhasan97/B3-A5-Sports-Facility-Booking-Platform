@@ -3,18 +3,41 @@ import AppError from '../../errors/AppError';
 import { facilityModel } from '../facility/facility.model';
 import { TBooking } from './booking.interface';
 import { bookingModel } from './booking.model';
-import { calculatePayableAmount } from './booking.utils';
+import { calculatePayableAmount, timeSlotConflicts } from './booking.utils';
 /*
 
 ----------------service function for inserting booking data in DB----------------*/
 const createBookingIntoDB = async (bookingData: TBooking, userId: string) => {
   //destructuring necessary properties from body
-  const { facility, startTime, endTime } = bookingData;
+  const { facility, date, startTime, endTime } = bookingData;
 
   //checking if the selected facility exists or not. If not throwing an error.
   const loadedFacility = await facilityModel.doesFacilityExist(facility);
   if (!loadedFacility) {
     throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
+  }
+
+  //retrieving bookings on same day for the selected facility
+  const previousBookings = await bookingModel.find(
+    {
+      facility: facility,
+      date: date,
+    },
+    { _id: 0, startTime: 1, endTime: 1 },
+  );
+
+  //creating new time object
+  const newBookingSchedule = {
+    startTime,
+    endTime,
+  };
+
+  //checking if there is any time slot conflict
+  if (timeSlotConflicts(previousBookings, newBookingSchedule)) {
+    throw new AppError(
+      httpStatus.CONFLICT,
+      'This slot is already booked. Please choose another slot.',
+    );
   }
 
   //setting pricePerHour
@@ -51,7 +74,7 @@ const getAllBookingsFromDB = async () => {
 const getUsersBookingsFromDB = async (userId: string) => {
   const response = await bookingModel
     .find({ user: userId })
-    .populate('user')
+    // .populate('user')
     .populate('facility');
   return response;
 };
@@ -75,11 +98,9 @@ const deleteBookingFromDB = async (id: string) => {
   }
 
   //updating isBooked status in DB
-  const response = await bookingModel.findByIdAndUpdate(
-    id,
-    { isBooked: 'canceled' },
-    { new: true },
-  );
+  const response = await bookingModel
+    .findByIdAndUpdate(id, { isBooked: 'canceled' }, { new: true })
+    .populate('facility');
 
   //returning result of findByIdAndUpdate query
   return response;
