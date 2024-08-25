@@ -10,7 +10,15 @@ const app: Application = express();
 //Using json parser by express and cors parser
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ['http://localhost:5173'] }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'https://sports-facility-platform.web.app',
+      'https://sports-facility-platform.firebaseapp.com',
+    ],
+  }),
+);
 
 //application routes
 app.use('/api', router);
