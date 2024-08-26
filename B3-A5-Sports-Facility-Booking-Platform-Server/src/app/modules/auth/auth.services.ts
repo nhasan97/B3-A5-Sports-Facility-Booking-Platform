@@ -9,9 +9,9 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 ----------------service function for saving user data in DB----------------*/
 const saveUserIntoDB = async (userData: TUser) => {
-  const { _id, name, email, role, phone, address } =
+  const { _id, name, email, role, phone, address, imageUrl } =
     await userModel.create(userData);
-  return { _id, name, email, role, phone, address };
+  return { _id, name, email, role, phone, address, imageUrl };
 };
 /*
 

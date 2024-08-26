@@ -9,6 +9,7 @@ export interface TUser {
   phone: string;
   role: 'admin' | 'user';
   address: string;
+  imageUrl?: string;
 }
 
 //declaring type for user with id

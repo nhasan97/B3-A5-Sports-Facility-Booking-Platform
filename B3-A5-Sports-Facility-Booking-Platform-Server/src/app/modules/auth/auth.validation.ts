@@ -42,6 +42,14 @@ const userSignupValidationSchema = z.object({
         invalid_type_error: 'Address must be string',
       })
       .trim(),
+
+    imageUrl: z
+      .string({
+        required_error: 'Address is required',
+        invalid_type_error: 'Address must be string',
+      })
+      .trim()
+      .optional(),
   }),
 });
 

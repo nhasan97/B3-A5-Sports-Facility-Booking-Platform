@@ -38,6 +38,10 @@ const userSchema = new Schema<TUser, UserModel>({
     required: true,
     trim: true,
   },
+  imageUrl: {
+    type: String,
+    trim: true,
+  },
 });
 
 //using document middleware for hashing password before saving document in DB

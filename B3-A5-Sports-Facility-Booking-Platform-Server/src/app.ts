@@ -17,6 +17,7 @@ app.use(
       'https://sports-facility-platform.web.app',
       'https://sports-facility-platform.firebaseapp.com',
     ],
+    credentials: true,
   }),
 );
 
