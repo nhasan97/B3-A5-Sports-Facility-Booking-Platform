@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import errorBg from "../assets/404.png";
+import errorBg from "../assets/images/404.png";
 
 const Error = () => {
   const navigate = useNavigate();

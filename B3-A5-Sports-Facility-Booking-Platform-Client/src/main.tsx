@@ -8,13 +8,16 @@ import { Toaster } from "sonner";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
 import { HelmetProvider } from "react-helmet-async";
+import FacilityProvider from "./providers/FacilityProvider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <HelmetProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RouterProvider router={router}></RouterProvider>
+          <FacilityProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </FacilityProvider>
         </PersistGate>
       </Provider>
       <Toaster></Toaster>

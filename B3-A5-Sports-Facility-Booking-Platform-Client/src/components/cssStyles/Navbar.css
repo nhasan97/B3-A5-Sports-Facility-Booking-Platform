@@ -1,0 +1,33 @@
+.nv>a {
+    color: #969696;
+    font-size: 16px;
+    position: relative;
+}
+
+.nv>a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: #B91C1C;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+}
+
+.nv>a:hover {
+    background-color: transparent;
+    color: #B91C1C;
+}
+
+.nv>a:hover::after {
+    width: 100%;
+    transition: .3s ease-in;
+}
+
+.nv a.active {
+    color: #B91C1C;
+}
+
+.nv a.active::after {
+    width: 100%;
+}
