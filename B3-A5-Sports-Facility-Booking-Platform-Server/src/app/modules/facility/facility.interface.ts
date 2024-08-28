@@ -6,6 +6,7 @@ export interface TFacility {
   description: string;
   pricePerHour: number;
   location: string;
+  imageUrl?: string;
   isDeleted?: boolean;
 }
 

@@ -58,7 +58,7 @@ const deleteFacility = catchAsync(async (req, res) => {
 --------------controller for getting all facility data from DB----------------*/
 const getAllFacilities = catchAsync(async (req, res) => {
   //receiving data from service function
-  const response = await facilityServices.getAllFacilitiesFromDB();
+  const response = await facilityServices.getAllFacilitiesFromDB(req?.query);
 
   //sending response
   if (response.length) {
@@ -73,6 +73,38 @@ const getAllFacilities = catchAsync(async (req, res) => {
     sendResponse(res, httpStatus.NOT_FOUND, false, 'No Data Found', response);
   }
 });
+/*
+
+--------------controller for getting specific facility from DB----------------*/
+const getSingleFacility = catchAsync(async (req, res) => {
+  //Passing id to service function
+  const response = await facilityServices.getSingleFacilityFromDB(
+    req.params.id,
+  );
+
+  //sending response
+  sendResponse(
+    res,
+    httpStatus.OK,
+    true,
+    'Facility fetched successfully',
+    response,
+  );
+});
+/*
+
+--------------controller for getting total facility count from DB----------------*/
+const getFacilityCount = catchAsync(async (req, res) => {
+  const response = await facilityServices.getFacilityCountFromDB();
+
+  sendResponse(
+    res,
+    httpStatus.OK,
+    true,
+    'Facilities fetched successfully!',
+    response,
+  );
+});
 
 //exporting all the controller functions through facilityControllers object
 export const facilityControllers = {
@@ -80,4 +112,6 @@ export const facilityControllers = {
   updateFacility,
   deleteFacility,
   getAllFacilities,
+  getSingleFacility,
+  getFacilityCount,
 };

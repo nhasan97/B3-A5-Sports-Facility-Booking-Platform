@@ -31,6 +31,13 @@ const createFacilityValidationSchema = z.object({
         invalid_type_error: 'Location must be string',
       })
       .trim(),
+
+    imageUrl: z
+      .string({
+        invalid_type_error: 'Url must be string',
+      })
+      .trim()
+      .optional(),
   }),
 });
 
@@ -66,6 +73,13 @@ const updateFacilityValidationSchema = z.object({
       .string({
         required_error: 'Location is required',
         invalid_type_error: 'Location must be string',
+      })
+      .trim()
+      .optional(),
+
+    imageUrl: z
+      .string({
+        invalid_type_error: 'Url must be string',
       })
       .trim()
       .optional(),

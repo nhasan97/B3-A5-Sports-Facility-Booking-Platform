@@ -29,5 +29,11 @@ router.delete('/:id', auth(userRole.admin), facilityControllers.deleteFacility);
 //------------route for fetching all the facility data from DB------------
 router.get('/', facilityControllers.getAllFacilities);
 
+//------------route for fetching single facility data from DB------------
+router.get('/:id', facilityControllers.getSingleFacility);
+
+//------------route for getting total number of facilities from DB------------
+router.get('/count/prod', facilityControllers.getFacilityCount);
+
 //exporting routes
 export const facilityRoutes = router;

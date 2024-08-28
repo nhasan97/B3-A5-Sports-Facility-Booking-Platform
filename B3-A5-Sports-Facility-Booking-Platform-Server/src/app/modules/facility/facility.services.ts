@@ -109,8 +109,61 @@ const deleteFacilityFromDB = async (id: string) => {
 /*
 
 ----------------service function for fetching all facility data from DB----------------*/
-const getAllFacilitiesFromDB = async () => {
-  const response = await facilityModel.find();
+const getAllFacilitiesFromDB = async (query: Record<string, unknown>) => {
+  const queryObject = { ...query };
+
+  const searchableFields = ['name', 'location'];
+  let searchTerm = '';
+  if (query?.searchTerm) {
+    searchTerm = query?.searchTerm as string;
+  }
+  const searchQuery = facilityModel.find({
+    $or: searchableFields.map((field) => ({
+      [field]: { $regex: searchTerm, $options: 'i' },
+    })),
+  });
+
+  const excludeFields = ['searchTerm', 'sort', 'limit', 'page'];
+
+  excludeFields.forEach((el) => delete queryObject[el]);
+  const filterQuery = searchQuery.find(queryObject);
+
+  let sort = 'name';
+  if (query?.sort) {
+    sort = query?.sort as string;
+  }
+  const sortQuery = filterQuery.sort(sort);
+
+  let limit = 1;
+  let page = 1;
+  let skip = 0;
+  if (query?.limit) {
+    limit = Number(query?.limit);
+  }
+  if (query?.page) {
+    page = Number(query?.page);
+    skip = page * limit;
+  }
+
+  const paginateQuery = sortQuery.skip(skip);
+
+  const limitQuery = await paginateQuery.limit(limit);
+
+  return limitQuery;
+};
+
+const getSingleFacilityFromDB = async (id: string) => {
+  const response = await facilityModel.findById(id);
+  if (!response) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
+  }
+  return response;
+};
+
+const getFacilityCountFromDB = async () => {
+  const response = await facilityModel.countDocuments({
+    isDeleted: { $ne: true },
+  });
   return response;
 };
 
@@ -120,4 +173,6 @@ export const facilityServices = {
   updateFacilityIntoDB,
   deleteFacilityFromDB,
   getAllFacilitiesFromDB,
+  getSingleFacilityFromDB,
+  getFacilityCountFromDB,
 };

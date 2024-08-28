@@ -24,6 +24,10 @@ const facilitySchema = new Schema<TFacility, FacilityModel>({
     required: true,
     trim: true,
   },
+  imageUrl: {
+    type: String,
+    trim: true,
+  },
   isDeleted: {
     type: Boolean,
     required: false,
