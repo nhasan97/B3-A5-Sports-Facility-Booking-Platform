@@ -13,14 +13,6 @@ const facilityApi = baseApi.injectEndpoints({
         currentPage,
         itemsPerPage,
       }) => {
-        console.log(
-          searchTerm,
-          categoryToLoad,
-          sort,
-          currentPage,
-          itemsPerPage
-        );
-
         const params = new URLSearchParams();
         if (searchTerm) {
           params.append("searchTerm", searchTerm);
