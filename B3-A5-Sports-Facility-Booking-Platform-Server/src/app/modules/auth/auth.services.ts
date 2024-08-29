@@ -97,10 +97,24 @@ const refreshToken = async (token: string) => {
     accessToken,
   };
 };
+/*
+
+----------------service function for getting user----------------*/
+const getUserFromDB = async (id: string) => {
+  //seraching user data in DB
+  const response = await userModel.findById(id);
+
+  if (!response) {
+    throw new AppError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  //returning response
+  return response;
+};
 
 //exporting all the service functions through authServices object
 export const authServices = {
   saveUserIntoDB,
   loginUser,
   refreshToken,
+  getUserFromDB,
 };

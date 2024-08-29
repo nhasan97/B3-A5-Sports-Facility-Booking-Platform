@@ -3,6 +3,7 @@ import { facilityRoutes } from '../modules/facility/facility.route';
 import { authRoutes } from '../modules/auth/auth.route';
 import { bookingRoutes } from '../modules/booking/booking.route';
 import { checkAvailabilityRoutes } from '../modules/checkAvailability/checkAvailability.route';
+import { paymentRoutes } from '../modules/payment/payment.route';
 
 const router = express.Router();
 
@@ -22,6 +23,10 @@ const moduleRoutes = [
   {
     path: '/check-availability',
     routes: checkAvailabilityRoutes,
+  },
+  {
+    path: '/confirmation',
+    routes: paymentRoutes,
   },
 ];
 

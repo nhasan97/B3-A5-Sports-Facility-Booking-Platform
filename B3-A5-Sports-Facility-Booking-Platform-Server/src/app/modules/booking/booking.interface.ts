@@ -7,6 +7,8 @@ export interface TBooking {
   endTime: string;
   user: string;
   facility: string;
+  transactionID: string;
+  paymentStatus: 'pending' | 'paid' | 'failed';
   payableAmount: number;
   isBooked: 'confirmed' | 'unconfirmed' | 'canceled';
 }

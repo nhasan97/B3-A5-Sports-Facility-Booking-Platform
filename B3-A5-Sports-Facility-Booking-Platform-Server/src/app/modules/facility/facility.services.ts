@@ -151,7 +151,9 @@ const getAllFacilitiesFromDB = async (query: Record<string, unknown>) => {
 
   return limitQuery;
 };
+/*
 
+----------------service function for fetching specific facility data from DB----------------*/
 const getSingleFacilityFromDB = async (id: string) => {
   const response = await facilityModel.findById(id);
   if (!response) {
@@ -159,7 +161,9 @@ const getSingleFacilityFromDB = async (id: string) => {
   }
   return response;
 };
+/*
 
+----------------service function for getting total number of facility data from DB----------------*/
 const getFacilityCountFromDB = async () => {
   const response = await facilityModel.countDocuments({
     isDeleted: { $ne: true },

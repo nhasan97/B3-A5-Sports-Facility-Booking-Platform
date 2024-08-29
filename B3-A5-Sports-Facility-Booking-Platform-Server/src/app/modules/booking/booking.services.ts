@@ -4,6 +4,8 @@ import { facilityModel } from '../facility/facility.model';
 import { TBooking } from './booking.interface';
 import { bookingModel } from './booking.model';
 import { calculatePayableAmount, timeSlotConflicts } from './booking.utils';
+import { initiatePayment } from '../payment/payment.utils';
+import { authServices } from '../auth/auth.services';
 /*
 
 ----------------service function for inserting booking data in DB----------------*/
@@ -16,6 +18,9 @@ const createBookingIntoDB = async (bookingData: TBooking, userId: string) => {
   if (!loadedFacility) {
     throw new AppError(httpStatus.NOT_FOUND, 'Facility not found');
   }
+
+  //retrieving user's info
+  const user = await authServices.getUserFromDB(userId);
 
   //retrieving bookings on same day for the selected facility
   const previousBookings = await bookingModel.find(
@@ -48,13 +53,27 @@ const createBookingIntoDB = async (bookingData: TBooking, userId: string) => {
     ...bookingData,
     user: userId,
     payableAmount: calculatePayableAmount(startTime, endTime, pricePerHour),
+    transactionID: `Txn-${Date.now() + '-' + Math.floor(Math.random() * 100000 + 1)}`,
+    paymentStatus: 'pending',
   };
 
   //saving in db
-  const response = await bookingModel.create(booking);
+  await bookingModel.create(booking);
+
+  //payment process
+  const paymentParams = {
+    transactionID: booking.transactionID,
+    payableAmount: booking.payableAmount,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    address: user.address,
+  };
+  const paymentSession = await initiatePayment(paymentParams);
 
   //returning result of create operation
-  return response;
+  // return response;
+  return paymentSession;
 };
 /*
 
