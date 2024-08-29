@@ -1,8 +1,15 @@
 import SidebarMenuItem from "./SidebarMenuItem";
+import { MdDashboard } from "react-icons/md";
 
 const AdminSideBarMenu = () => {
   return (
     <div className="sb flex flex-col justify-center items-start mx-auto">
+      <SidebarMenuItem
+        icon={<MdDashboard className="text-xl" />}
+        menuText="Overview"
+        route="/admin-dashboard/admin-overview"
+      ></SidebarMenuItem>
+
       <SidebarMenuItem
         icon={<i className="fa-solid fa-table-tennis-paddle-ball"></i>}
         menuText="Facilities"

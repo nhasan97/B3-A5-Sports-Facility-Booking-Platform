@@ -13,6 +13,8 @@ import BookingPage from "@/pages/BookingPage";
 import AddAdmin from "@/pages/admin/AddAdmin";
 import BookingManagement from "@/pages/admin/BookingManagement";
 import MyBookings from "@/pages/user/MyBookings";
+import AdminOverView from "@/pages/admin/AdminOverView";
+import UserOverView from "@/pages/user/UserOverView";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,15 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <ProtectedRoute role="admin">
-            <FacilityManagement />
+            <AdminOverView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-overview",
+        element: (
+          <ProtectedRoute role="admin">
+            <AdminOverView />
           </ProtectedRoute>
         ),
       },
@@ -84,7 +94,15 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <ProtectedRoute role="user">
-            <MyBookings />
+            <UserOverView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "user-overview",
+        element: (
+          <ProtectedRoute role="user">
+            <UserOverView />
           </ProtectedRoute>
         ),
       },
