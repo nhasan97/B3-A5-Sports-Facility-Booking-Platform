@@ -9,6 +9,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
 import { HelmetProvider } from "react-helmet-async";
 import FacilityProvider from "./providers/FacilityProvider";
+import BookingProvider from "./providers/BookingProvider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <FacilityProvider>
-            <RouterProvider router={router}></RouterProvider>
+            <BookingProvider>
+              <RouterProvider router={router}></RouterProvider>
+            </BookingProvider>
           </FacilityProvider>
         </PersistGate>
       </Provider>

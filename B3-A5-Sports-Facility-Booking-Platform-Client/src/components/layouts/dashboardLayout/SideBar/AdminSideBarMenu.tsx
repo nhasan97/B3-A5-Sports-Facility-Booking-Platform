@@ -1,4 +1,5 @@
 import SidebarMenuItem from "./SidebarMenuItem";
+import { TbBrandBooking } from "react-icons/tb";
 
 const AdminSideBarMenu = () => {
   return (
@@ -7,6 +8,12 @@ const AdminSideBarMenu = () => {
         icon={<i className="fa-solid fa-table-tennis-paddle-ball"></i>}
         menuText="Facilities"
         route="/dashboard/admin-dashboard-facilities"
+      ></SidebarMenuItem>
+
+      <SidebarMenuItem
+        icon={<i className="fa-solid fa-b"></i>}
+        menuText="Bookings"
+        route="/dashboard/admin-dashboard-bookings"
       ></SidebarMenuItem>
 
       <SidebarMenuItem
