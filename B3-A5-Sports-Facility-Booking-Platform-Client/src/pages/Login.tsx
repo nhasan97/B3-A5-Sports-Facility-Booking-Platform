@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
-import Container from "@/components/shared/Container";
+
 import { Input } from "@/components/ui/input";
 import authApi from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
@@ -9,6 +9,7 @@ import { setUser } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
 import { toast } from "sonner";
 import { TUser } from "@/types/auth.type";
+import Container from "@/components/layouts/RootLayout/Container";
 // import { BiLogoGoogle } from "react-icons/bi";
 
 const Login = () => {

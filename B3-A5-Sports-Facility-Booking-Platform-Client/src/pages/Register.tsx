@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import Container from "@/components/shared/Container";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { uploadImage } from "@/utils/imageUploader";
@@ -11,6 +10,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
 import { TUser } from "@/types/auth.type";
 import { setUser } from "@/redux/features/auth/authSlice";
+import Container from "@/components/layouts/RootLayout/Container";
 
 const Register = () => {
   const {
