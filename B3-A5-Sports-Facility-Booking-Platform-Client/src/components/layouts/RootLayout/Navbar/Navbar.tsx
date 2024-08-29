@@ -34,6 +34,13 @@ const Navbar = () => {
                 {link.name}
               </NavLink>
             ))}
+
+            {(user as TUser)?.role === "admin" && (
+              <NavLink to="/admin-dashboard">Dashboard</NavLink>
+            )}
+            {(user as TUser)?.role === "user" && (
+              <NavLink to="/user-dashboard">Dashboard</NavLink>
+            )}
           </div>
           <div className="hidden lg:flex">
             {(user as TUser)?.email ? (

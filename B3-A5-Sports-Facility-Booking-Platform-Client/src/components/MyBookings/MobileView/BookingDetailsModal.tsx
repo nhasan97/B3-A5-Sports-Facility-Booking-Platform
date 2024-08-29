@@ -7,10 +7,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { TBookingProp } from "@/types/booking.type";
+import useBookingContext from "@/hooks/useBookingContext";
+import { TBookingContext, TBookingProp } from "@/types/booking.type";
 import { MdInfo } from "react-icons/md";
 
 const BookingDetailsModal = ({ booking }: TBookingProp) => {
+  const { handleCancelBooking } = useBookingContext() as TBookingContext;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -24,28 +27,23 @@ const BookingDetailsModal = ({ booking }: TBookingProp) => {
         </DialogHeader>
 
         <div className="space-y-8 overflow-y-auto">
-          <div className="space-y-1 py-1">
-            <h1 className="text-lg font-medium">Customer Details</h1>
-            <div className="flex justify-start items-center gap-2">
-              <img
-                src={booking?.user?.imageUrl}
-                alt=""
-                className="w-20 h-20 object-fill mb-4 rounded-lg"
-              />
-              <p className="text-lg text-[#757575]">{booking?.user?.name}</p>
-            </div>
-
+          <div className="space-y-1 p-1">
+            <h1 className="text-lg font-medium">Booking Details</h1>
             <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Email: </span>
-              {booking?.user?.email}
+              <span className="text-[#494949] font-medium">Date: </span>
+              {booking?.date}
             </p>
             <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Cell: </span>
-              {booking?.user?.phone}
+              <span className="text-[#494949] font-medium">Start Time: </span>
+              {booking?.startTime}
             </p>
             <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Address: </span>
-              {booking?.user?.address}
+              <span className="text-[#494949] font-medium">End Time: </span>
+              {booking?.endTime}
+            </p>
+            <p className="text-[#808080] text-sm sm:text-base leading-7">
+              <span className="text-[#494949] font-medium">Status: </span>
+              {booking?.isBooked}
             </p>
           </div>
 
@@ -75,26 +73,6 @@ const BookingDetailsModal = ({ booking }: TBookingProp) => {
           </div>
 
           <div className="space-y-1 p-1">
-            <h1 className="text-lg font-medium">Booking Details</h1>
-            <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Date: </span>
-              {booking?.date}
-            </p>
-            <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Start Time: </span>
-              {booking?.startTime}
-            </p>
-            <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">End Time: </span>
-              {booking?.endTime}
-            </p>
-            <p className="text-[#808080] text-sm sm:text-base leading-7">
-              <span className="text-[#494949] font-medium">Status: </span>
-              {booking?.isBooked}
-            </p>
-          </div>
-
-          <div className="space-y-1 p-1">
             <h1 className="text-lg font-medium">Payment Details</h1>
             <p className="text-[#808080] text-sm sm:text-base leading-7">
               <span className="text-[#494949] font-medium">Total Bill: </span>$
@@ -113,6 +91,12 @@ const BookingDetailsModal = ({ booking }: TBookingProp) => {
               </span>
               {booking?.paymentStatus.toUpperCase()}
             </p>
+          </div>
+
+          <div>
+            <Button onClick={() => handleCancelBooking(booking?._id as string)}>
+              Cancel Booking
+            </Button>
           </div>
         </div>
         <DialogClose asChild>

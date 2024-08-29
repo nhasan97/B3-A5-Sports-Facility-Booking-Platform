@@ -12,6 +12,7 @@ import FacilityDetails from "@/pages/FacilityDetails";
 import BookingPage from "@/pages/BookingPage";
 import AddAdmin from "@/pages/admin/AddAdmin";
 import BookingManagement from "@/pages/admin/BookingManagement";
+import MyBookings from "@/pages/user/MyBookings";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "/admin-dashboard",
     element: <DashboardLayout />,
     children: [
       {
@@ -70,6 +71,28 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute role="admin">
             <AddAdmin />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/user-dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <ProtectedRoute role="user">
+            <MyBookings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "user-dashboard-bookings",
+        element: (
+          <ProtectedRoute role="user">
+            <MyBookings />
           </ProtectedRoute>
         ),
       },

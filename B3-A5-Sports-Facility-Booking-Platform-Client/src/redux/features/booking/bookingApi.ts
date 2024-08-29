@@ -64,7 +64,7 @@ const bookingApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["facility"],
+      invalidatesTags: ["booking"],
     }),
   }),
 });

@@ -32,10 +32,17 @@ export type TBookingContext = {
   loadingUsersBookings: boolean;
   usersBookings: TBookingExtended[];
   numberOfUsersBookings: number;
+  handleCancelBooking: (_id: string) => void;
 };
 
 export type TBookingManagementProp = {
   loadingBookings: boolean;
   bookings: TBookingExtended[];
+  searchTerm: string;
+};
+
+export type TMyBookingProp = {
+  loadingUsersBookings: boolean;
+  usersBookings: TBookingExtended[];
   searchTerm: string;
 };

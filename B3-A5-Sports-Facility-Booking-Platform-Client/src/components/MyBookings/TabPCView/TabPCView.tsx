@@ -1,35 +1,35 @@
 import Loading from "@/components/shared/Loading";
 import NoData from "@/components/shared/NoData";
 
-import { TBookingExtended, TBookingManagementProp } from "@/types/booking.type";
+import { TBookingExtended, TMyBookingProp } from "@/types/booking.type";
 import BookingTableRow from "./BookingTableRow";
 
 const TabPCView = ({
-  loadingBookings,
-  bookings,
+  loadingUsersBookings,
+  usersBookings,
   searchTerm,
-}: TBookingManagementProp) => {
+}: TMyBookingProp) => {
   return (
     <div className="bg-white hidden sm:block w-full h-[80%] overflow-y-auto rounded-lg border">
-      {loadingBookings ? (
+      {loadingUsersBookings ? (
         <Loading></Loading>
-      ) : bookings?.length > 0 ? (
+      ) : usersBookings?.length > 0 ? (
         <table className="w-full">
           {/* head */}
           <thead>
             <tr className="flex  justify-between items-center text-[#757575] p-5 border-b">
-              <th className="flex-1">Customer</th>
               <th className="flex-1">Facility</th>
               <th className="flex-1">Booked Date</th>
               <th className="flex-1">Start Time</th>
               <th className="flex-1">End Time</th>
               <th className="flex-1">Payment</th>
               <th className="flex-1">Status</th>
+              <th className="flex-1">Action</th>
             </tr>
           </thead>
           <tbody>
             {/* row  */}
-            {bookings
+            {usersBookings
               ?.filter((booking) => {
                 return searchTerm.toLowerCase() === ""
                   ? booking

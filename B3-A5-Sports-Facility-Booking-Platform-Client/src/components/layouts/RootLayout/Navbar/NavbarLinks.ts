@@ -11,8 +11,4 @@ export const NavbarLinks = [
     path: "/cart-page",
     name: "Cart",
   },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-  },
 ];

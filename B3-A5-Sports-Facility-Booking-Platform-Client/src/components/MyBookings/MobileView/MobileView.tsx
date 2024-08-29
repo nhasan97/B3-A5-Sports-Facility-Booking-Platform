@@ -1,19 +1,19 @@
 import Loading from "@/components/shared/Loading";
 import NoData from "@/components/shared/NoData";
-import { TBookingExtended, TBookingManagementProp } from "@/types/booking.type";
+import { TBookingExtended, TMyBookingProp } from "@/types/booking.type";
 import MobileViewBookingCard from "./MobileViewBookingCard";
 
 const MobileView = ({
-  loadingBookings,
-  bookings,
+  loadingUsersBookings,
+  usersBookings,
   searchTerm,
-}: TBookingManagementProp) => {
+}: TMyBookingProp) => {
   return (
     <div className="grid grid-cols-1 gap-3 sm:hidden w-full h-[80%] overflow-y-auto rounded-lg mt-6">
-      {loadingBookings ? (
+      {loadingUsersBookings ? (
         <Loading></Loading>
-      ) : bookings?.length > 0 ? (
-        bookings
+      ) : usersBookings?.length > 0 ? (
+        usersBookings
           ?.filter((booking) => {
             return searchTerm.toLowerCase() === ""
               ? booking
