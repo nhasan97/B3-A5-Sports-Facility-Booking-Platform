@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Top-Quality Facilities",
+    "description": "Experience the best with our state-of-the-art sports facilities.",
+    "icon": "https://i.ibb.co/LgZV38g/badge.png"
+  },
+  {
+    "id": 2,
+    "title": "Easy Online Booking",
+    "description": "Book your courts and fields quickly and easily, anytime.",
+    "icon": "https://i.ibb.co/BN5MYNX/booking.png"
+  },
+  {
+    "id": 3,
+    "title": "Affordable Pricing",
+    "description": "Enjoy competitive pricing with exclusive discounts and deals.",
+    "icon": "https://i.ibb.co/kGLqrzQ/low-price.png"
+  },
+  {
+    "id": 4,
+    "title": "Flexible Scheduling",
+    "description": "Book sessions that fit your schedule, morning or night.",
+    "icon": "https://i.ibb.co/6BVQmC9/work-schedule.png"
+  },
+  {
+    "id": 5,
+    "title": "Customer Support",
+    "description": "Our 24/7 support team is here to assist with any issues.",
+    "icon": "https://i.ibb.co/QfsnWXr/support.png"
+  },
+  {
+    "id": 6,
+    "title": "Variety of Sports",
+    "description": "Choose from a wide range of sports to suit your needs.",
+    "icon": "https://i.ibb.co/Bt58jr1/sports.png"
+  },
+  {
+    "id": 7,
+    "title": "Real-Time Availability",
+    "description": "See live availability and book exactly when you want.",
+    "icon": "https://i.ibb.co/C5c6FQr/real-time.png"
+  },
+  {
+    "id": 8,
+    "title": "Secure Payment ",
+    "description": "Pay securely with our convenient and protected options.",
+    "icon": "https://i.ibb.co/8dSygXy/secure-payment.png"
+  }
+]

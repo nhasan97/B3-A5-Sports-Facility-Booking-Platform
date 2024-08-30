@@ -12,7 +12,7 @@ const ClientReviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("clientReviews.json")
+    fetch("jsonDataFiles/clientReviews.json")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -24,21 +24,7 @@ const ClientReviews = () => {
     subTitle: "What our clients say",
   };
 
-  // const settings = {
-  //   dots: true,
-  //   className: "center",
-  //   centerMode: true,
-  //  centerPadding: "60px",
-  //   infinite: true,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 3,
-  //   autoplay: true,
-  //   speed: 3000,
-  //   autoplaySpeed: 3000,
-  //   cssEase: "linear",
-  // };
-
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     // speed: 500,
