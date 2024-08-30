@@ -1,8 +1,7 @@
-import { TFacilityProp } from "@/types/facility.type";
+import { TTeamMemberProp } from "@/types/team.type";
 
-const FeaturedFacilityCard = ({ facility }: TFacilityProp) => {
-  const { imageUrl, name, description } = facility;
-
+const TeamCard = ({ member }: TTeamMemberProp) => {
+  const { imageUrl, name, designation, say } = member;
   return (
     <div className="bg-gradient-to-r from-[#121213] via-[#19191a] to-[#121213] text-white text-lg shadow-xl rounded-xl border-b border-red-800">
       <figure className="p-1">
@@ -17,11 +16,19 @@ const FeaturedFacilityCard = ({ facility }: TFacilityProp) => {
           {name}
         </h2>
         <p className="text-sm md:text-base text-[#696969] text-justify">
-          {description}
+          {designation}
         </p>
+        <p className="text-sm md:text-base text-[#696969] text-justify">
+          {say}
+        </p>
+      </div>
+      <div className="flex justify-start items-center gap-6 p-3">
+        <i className="fa-brands fa-facebook"></i>
+        <i className="fa-brands fa-square-instagram"></i>
+        <i className="fa-brands fa-discord"></i>
       </div>
     </div>
   );
 };
 
-export default FeaturedFacilityCard;
+export default TeamCard;

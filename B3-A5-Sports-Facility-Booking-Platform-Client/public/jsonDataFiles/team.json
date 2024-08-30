@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Camila Lee",
+    "designation": "Founder of Agency",
+    "say": "contact me anytime you need through my socials",
+    "imageUrl": ""
+  },
+  {
+    "id": 2,
+    "name": "Adam Miller",
+    "designation": "Founder of Agency",
+    "say": "contact me anytime you need through my socials",
+    "imageUrl": ""
+  },
+  {
+    "id": 3,
+    "name": "Christina Perish",
+    "designation": "Founder of Agency",
+    "say": "contact me anytime you need through my socials",
+    "imageUrl": ""
+  }
+]

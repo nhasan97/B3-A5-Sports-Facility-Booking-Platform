@@ -97,7 +97,8 @@ const FacilityProvider = ({ children }: TChildren) => {
       },
     };
     try {
-      const res = await editFacility(payload).unwrap();
+      // const res = await editFacility(payload).unwrap();
+      await editFacility(payload).unwrap();
       resetValues();
       // displaySuccessToast(res);
     } catch (err) {
@@ -112,7 +113,8 @@ const FacilityProvider = ({ children }: TChildren) => {
         label: "Yes, delete it",
         onClick: async () => {
           try {
-            const res = await deleteFacility(_id).unwrap(); // displaySuccessToast(res);
+            // const res =
+            await deleteFacility(_id).unwrap(); // displaySuccessToast(res);
           } catch (err) {
             // toast.error(err.data.message, { duration: 2000 });
           }

@@ -15,6 +15,8 @@ import BookingManagement from "@/pages/admin/BookingManagement";
 import MyBookings from "@/pages/user/MyBookings";
 import AdminOverView from "@/pages/admin/AdminOverView";
 import UserOverView from "@/pages/user/UserOverView";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/booking-page/:id",
         element: <BookingPage />,
+      },
+      {
+        path: "/about-page",
+        element: <About />,
+      },
+      {
+        path: "/contact-page",
+        element: <Contact />,
       },
     ],
   },

@@ -1,7 +1,6 @@
 import { Button } from "../../ui/button";
 import { RiArrowRightLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { GiCheckMark } from "react-icons/gi";
 import BannerCard from "./BannerCard";
 import { TOffer } from "@/types/offer.type";
 import { useEffect, useState } from "react";

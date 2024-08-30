@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
-
 import { Input } from "@/components/ui/input";
 import authApi from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
@@ -10,7 +9,6 @@ import { verifyToken } from "@/utils/verifyToken";
 import { toast } from "sonner";
 import { TUser } from "@/types/auth.type";
 import Container from "@/components/layouts/RootLayout/Container";
-// import { BiLogoGoogle } from "react-icons/bi";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -47,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-[url('/public/loginbg.jpg')] bg-[rgba(20,20,20,0.73)] bg-no-repeat bg-center bg-cover bg-blend-overlay bg-fixed">
+    <div className="h-screen flex justify-center items-center bg-[url('/public/loginRegBG.jpeg')] bg-[rgba(20,20,20,0.73)] bg-no-repeat bg-center bg-cover bg-blend-overlay bg-fixed">
       <Container>
         <div className="w-full">
           <div className="bg-[#f4f3f081] text-center p-5 sm:p-10 space-y-6 rounded-lg backdrop-blur-sm">

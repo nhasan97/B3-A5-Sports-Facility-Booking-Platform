@@ -8,7 +8,11 @@ export const NavbarLinks = [
     name: "All Facilities",
   },
   {
-    path: "/cart-page",
-    name: "Cart",
+    path: "/about-page",
+    name: "About",
+  },
+  {
+    path: "/contact-page",
+    name: "Contact Us",
   },
 ];

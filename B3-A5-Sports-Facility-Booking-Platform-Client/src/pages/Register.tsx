@@ -80,7 +80,7 @@ const Register = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-[url('/public/loginbg.jpg')] bg-[rgba(20,20,20,0.73)] bg-no-repeat bg-center bg-cover bg-blend-overlay bg-fixed">
+    <div className="h-screen flex justify-center items-center bg-[url('/public/loginRegBG.jpeg')]  bg-[rgba(20,20,20,0.73)] bg-no-repeat bg-center bg-cover bg-blend-overlay bg-fixed">
       <Container>
         <div className="w-full">
           <div className="bg-[#f4f3f081] text-center p-5 sm:p-10 space-y-6 rounded-lg backdrop-blur-sm">
