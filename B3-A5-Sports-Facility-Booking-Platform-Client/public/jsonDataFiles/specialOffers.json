@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Summer Sizzle Sale",
+    "mainOffer": "20% Off All Bookings!",
+    "description": "Book your court or field today and enjoy 20% off on all bookings throughout the summer. Don't miss out on the best deals of the season!"
+  },
+  {
+    "title": "First-Time Users",
+    "mainOffer": "Get Your First Booking Free!",
+    "description": "New to our platform? Your first booking is on us! Sign up today and enjoy your first session at no cost."
+  },
+  {
+    "title": "Weekend Warrior Special",
+    "mainOffer": "30% Off on Weekend Bookings!",
+    "description": "Play hard this weekend with 30% off on all Saturday and Sunday bookings. Get your friends together and enjoy premium facilities at a discounted rate."
+  },
+  {
+    "title": "Early Bird Offer",
+    "mainOffer": "15% Off Morning Sessions!",
+    "description": "Rise and shine! Book any facility before 10 AM and save 15% on your session. Start your day with a great workout at a great price."
+  },
+  {
+    "title": "Loyalty Rewards",
+    "mainOffer": "Book 5 Sessions, Get 1 Free!",
+    "description": "Keep coming back and we'll reward you! Book five sessions and get your next one absolutely free. It's our way of saying thank you for choosing us."
+  },
+  {
+    "title": "Student Discount",
+    "mainOffer": "25% Off with Valid Student ID!",
+    "description": "Calling all students! Enjoy a 25% discount on all bookings with a valid student ID. Stay active and save big!"
+  },
+  {
+    "title": "Corporate Deal",
+    "mainOffer": "Bulk Booking Discounts!",
+    "description": "Need to book multiple sessions for your team or company? Enjoy special discounts on bulk bookings. Contact us for more details!"
+  },
+  {
+    "title": "Refer a Friend",
+    "mainOffer": "Get $10 Off Your Next Booking!",
+    "description": "Love our facilities? Share the love! Refer a friend and get $10 off your next booking when they make their first reservation."
+  }
+]
