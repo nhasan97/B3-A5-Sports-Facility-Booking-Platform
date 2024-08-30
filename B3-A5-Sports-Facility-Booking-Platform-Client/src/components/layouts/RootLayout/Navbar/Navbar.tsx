@@ -1,4 +1,3 @@
-// import MainLogo from "@/components/shared/MainLogo";
 import { NavLink, useNavigate } from "react-router-dom";
 import NavLinkDropdown from "./NavLinkDropdown";
 import { NavbarLinks } from "./NavbarLinks";
@@ -14,7 +13,11 @@ import Container from "../Container";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((currentState) => currentState.auth);
-  const user = verifyToken(token as string);
+
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
 
   const navigate = useNavigate();
 
